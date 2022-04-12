@@ -1,9 +1,15 @@
 # Artificial Intelligence 2
+
 # Exercise 1
+
 ## Name: Nikolaos Iliopoulos
-## AM:   1115201800332
+
+## AM: 1115201800332
+
 ---
+
 > **A classifier to identify anti-vax | pro-vax tweets using softmax regression**
+
 ## Libraries
 
 - **pandas**
@@ -18,16 +24,19 @@
 
 In order to do softmax regration i used the LogisticRegression function from sklearn.linear_model library.
 Arguments:
+
 - **multi_class** = "multinomial"
   > This argument is for the softmax regression.
 - **max_iter** = 5000
   > Increase maximum iterations so that the model does not get stuck.
+
 ---
+
 ## Text Vectorizers
 
 - **CountVectorizer()**
   > CountVectorizer is used to count the number of times a word appears in a document.
-  <!-- > 
+  <!-- >
   > Words in the Vocabulary = *2199*
   > |  Scores   |    Training Set    |   Validation Set   |
   > |-----------|--------------------|--------------------|
@@ -36,7 +45,7 @@ Arguments:
   > | Precision | 0.8026 | 0.7099 | -->
 - **TfidfVectorizer()**
   > TfidfVectorizer is used to count the number of times a word appears in a document and then normalize the counts by the inverse document frequency.
-  <!-- > 
+  <!-- >
   > Words in the Vocabulary = *2199*
   > |  Scores   |    Training Set    |   Validation Set   |
   > |-----------|--------------------|--------------------|
@@ -45,7 +54,7 @@ Arguments:
   > | Precision | 0.7809 | 0.7159 | -->
 - **HashingVectorizer()**
   > HashingVectorizer is used to convert a collection of text documents to a matrix of token occurrences.
-  <!-- > 
+  <!-- >
   > n_features = *2048*
   > |  Scores   |    Training Set    |   Validation Set   |
   > |-----------|--------------------|--------------------|
@@ -55,10 +64,11 @@ Arguments:
 
 **I concluded that the TfidfVectorizer() is the best option for this task.**
 
----    
+---
 
 For the CountVectorizer() and the TfidfVectorizer() i used the following arguments:
-- **strip_accents** = 'unicode' 
+
+- **strip_accents** = 'unicode'
   > This argument is used to remove accents from the text. It reduces the dimensionality of the data.
 - **ngram_range** = (1, 1)
   > This argument is used to create n-grams. It is used to create unigrams and bigrams.
@@ -70,7 +80,9 @@ For the CountVectorizer() and the TfidfVectorizer() i used the following argumen
   > This argument is used to remove stop words.
 - **lowercase** = True
   > This argument is used to convert all words to lowercase.
+
 ---
+
 Generally i show small changes in the results by changing the arguments.
 Only the **min_df** argument did good by removing the words that appeared in less documents, that are not important for the classification.
 
@@ -95,25 +107,26 @@ The pre-processing is done by doing the following things:
 ## Scores && Results
 
 In the start the model was **overfitting** with 32656 words in the Vocabulary.
+
 - with CountVectorizer().
 
 <p align="center">
-  <img src="first_model_with_countvectorizer_scores.png" width="300" />
-  <img src="first_model_with_countvectorizer.png" width="300" /> 
+  <img src="images/first_model_with_countvectorizer_scores.png" width="300" />
+  <img src="images/first_model_with_countvectorizer.png" width="300" /> 
 </p>
 
 - with HashingVectorizer().
 
 <p align="center">
-  <img src="hashingvectorizer_scores.png" width="300" />
-  <img src="hashingvectorizer.png" width="300" /> 
+  <img src="images/hashingvectorizer_scores.png" width="300" />
+  <img src="images/hashingvectorizer.png" width="300" /> 
 </p>
 
 - with TfidfVectorizer().
 
 <p align="center">
-  <img src="tfidfvectorizer_scores.png" width="300" />
-  <img src="tfidfvectorizer.png" width="300" /> 
+  <img src="images/tfidfvectorizer_scores.png" width="300" />
+  <img src="images/tfidfvectorizer.png" width="300" /> 
 </p>
 
 > I choose the TfidfVectorizer() because it keeps the scores high and the gap between the train scores and the validation scores low.
@@ -123,15 +136,15 @@ In the start the model was **overfitting** with 32656 words in the Vocabulary.
 **Then i removed the stopwords, made the words lowercase, strip_accents = 'unicode', ngram_range=(1,1), min_df=0.001**
 
 <p align="center">
-  <img src="mindf0.001_scores.png" width="300" />
-  <img src="mindf0.001.png" width="300" /> 
+  <img src="images/mindf0.001_scores.png" width="300" />
+  <img src="images/mindf0.001.png" width="300" /> 
 </p>
 
 **I tried min_df=0.01 the gap in the f1 score was lower but the scores where also a little bit lower so i did not choose it**
 
 <p align="center">
-  <img src="mindf0.01_scores.png" width="300" />
-  <img src="mindf0.01.png" width="300" /> 
+  <img src="images/mindf0.01_scores.png" width="300" />
+  <img src="images/mindf0.01.png" width="300" /> 
 </p>
 
 ---
@@ -140,8 +153,8 @@ In the start the model was **overfitting** with 32656 words in the Vocabulary.
 Words in the Vocabulary = **1469** from the 32656 in the start.
 
 <p align="center">
-  <img src="final_scores.png" width="300" />
-  <img src="final.png" width="300" /> 
+  <img src="images/final_scores.png" width="300" />
+  <img src="images/final.png" width="300" /> 
 </p>
 
 ## Remarks
